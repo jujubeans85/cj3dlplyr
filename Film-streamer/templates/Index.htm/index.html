@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Film Streamer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>🎬 Popular Films</h1>
+    {% if films %}
+        <ul class="film-list">
+        {% for film in films %}
+            <li>
+                <a href="{{ url_for('watch', filename=film) }}">{{ film }}</a>
+                <a href="{{ url_for('watch', filename=film, download=1) }}" class="download-link">[download]</a>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No films found. Place video files in the <code>films/</code> folder.</p>
+    {% endif %}
+</body>
+</html>
